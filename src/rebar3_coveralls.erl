@@ -86,6 +86,7 @@ format_error(Reason) ->
 
 cover_paths(State) ->
   lists:foreach(fun(App) ->
+                    io:format("cover path for APP ~p\n", [App]),
                     AppDir = rebar_app_info:out_dir(App),
                     true   = code:add_patha(filename:join([AppDir, "ebin"])),
                     _      = code:add_patha(filename:join([AppDir, "test"]))
