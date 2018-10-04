@@ -72,6 +72,8 @@ do_coveralls(ConvertAndSend, Get, GetLocal, MaybeSkip, Task) ->
   RepoToken    = GetLocal(coveralls_repo_token, []),
   F            = fun(X) -> X =:= undef orelse X =:= false end,
   CoverExport  = Get(cover_export_enabled, false),
+  io:format("File ~p, ServiceName ~p, ServiceJobId ~p, CoverExport ~p\n",
+            [File, ServiceName, ServiceJobId, CoverExport]),
   case lists:any(F, [File, ServiceName, ServiceJobId, CoverExport]) of
     true  ->
       throw({error,
